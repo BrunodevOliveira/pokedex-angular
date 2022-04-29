@@ -1,0 +1,12 @@
+@import '../../../config-scss/rem-calc.scss';
+
+// Sinaliza para aplicação que os elementos dentro de host ficam acessiveis apenas nesse componente
+// Ex.: se tiver uma outra tag header
+:host{
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem-calc(40) 0;
+  }
+}
