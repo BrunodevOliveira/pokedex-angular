@@ -15,12 +15,14 @@ export class PokeApiService {
 
   get apiListAllPokemons(): Observable<any>{
     return this.http.get<any>(this.url).pipe(
-      tap(res => res),
+      // tap(res => res),
       tap(res => {
-        res.results.map( (resPokemons: any) => {
+        res.results.map( (resPokemon: any) => { //map do JS
 
-          this.apiGetPokemons(resPokemons.url).subscribe(
-            res =>  resPokemons.status = res
+          // apiGetPokemons irá me retornar uma nova requisição (res)
+          this.apiGetPokemons(resPokemon.url).subscribe(
+            // Crio uma propriedade em cada Pokemon para armazenar a resposta dessa segunda req
+            res =>  resPokemon.status = res
           )
         })
       })
@@ -34,5 +36,4 @@ export class PokeApiService {
       )
     )
   }
-
 }
