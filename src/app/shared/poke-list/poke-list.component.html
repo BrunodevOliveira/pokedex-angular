@@ -1,25 +1,31 @@
-<!-- Carrega um template para cada pokemon vindo da variável de getAllPokemon -->
-<ng-template ngFor let-pokemon [ngForOf]="getAllPokemons">
+<poke-search ></poke-search>
+<!-- (emmitSearch)="" -->
+<section class="listagem">
+  <!-- Carrega um template para cada pokemon vindo da variável de getAllPokemon -->
+  <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons">
 
-  <!-- essa lista só irá aparecer caso a propriedade status exista -->
-  <a [routerLink]="['details', pokemon.status.id]" href="#" class="pokemon" *ngIf="pokemon.status">
-    <section class="pokemon__status">
-      <h2>{{pokemon.name}}</h2>
+    <!-- essa lista só irá aparecer caso a propriedade status exista -->
+    <a [routerLink]="['details', pokemon.status.id]" href="#" class="pokemon" *ngIf="pokemon.status">
+      <section class="pokemon__status">
+        <h2>{{pokemon.name}}</h2>
 
-      <!-- Irá criar uma li para cada nome vindo do array types-->
-      <ul>
-        <li *ngFor="let value of pokemon.status.types">
-          {{value.type.name}}
-        </li>
+        <!-- Irá criar uma li para cada nome vindo do array types-->
+        <ul>
+          <li *ngFor="let value of pokemon.status.types">
+            {{value.type.name}}
+          </li>
 
-      </ul>
-    </section>
+        </ul>
+      </section>
 
-    <section class="pokemon__image">
-      <img
-        [src]="pokemon.status.sprites.other.dream_world.front_default"
-        [alt]="pokemon.name"
-      >
-    </section>
-  </a>
-</ng-template>
+      <section class="pokemon__image">
+        <img
+          [src]="pokemon.status.sprites.other.dream_world.front_default"
+          [alt]="pokemon.name"
+          loading="lazy"
+        >
+      </section>
+    </a>
+  </ng-template>
+
+</section>
