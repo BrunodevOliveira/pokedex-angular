@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokeListComponent implements OnInit {
 
+  private setAllPokemons: any
   public getAllPokemons: any
 
   constructor(
@@ -17,9 +18,24 @@ export class PokeListComponent implements OnInit {
   ngOnInit(): void {
     this.pokeApiService.apiListAllPokemons.subscribe(
       res => {
-        this.getAllPokemons = res.results
+        this.setAllPokemons = res.results
+        this.getAllPokemons = this.setAllPokemons
       }
     )
+  }
+
+  public getSearch(value:string){
+
+    // O método sempre irá filtrar de uma lista que contém todos os pokemons
+    // assim a cada busca o filtro sempre será feito a partir da listagem completa
+    const filter = this.setAllPokemons.filter( (res:any ) => {
+      return !res.name.indexOf(value.toLowerCase())
+    })
+
+    // Passo para o getAll o resultado do filtro.
+    this.getAllPokemons = filter
+    console.log(this.getAllPokemons); //Retorna o pokemon filtrado
+    console.log(this.setAllPokemons); //Retorna a lista pré-carregada de 100 pokemons
   }
 
 }
