@@ -25,17 +25,10 @@ export class PokeListComponent implements OnInit {
   }
 
   public getSearch(value:string){
-
-    // O método sempre irá filtrar de uma lista que contém todos os pokemons
-    // assim a cada busca o filtro sempre será feito a partir da listagem completa
     const filter = this.setAllPokemons.filter( (res:any ) => {
       return !res.name.indexOf(value.toLowerCase())
     })
 
-    // Passo para o getAll o resultado do filtro.
     this.getAllPokemons = filter
-    console.log(this.getAllPokemons); //Retorna o pokemon filtrado
-    console.log(this.setAllPokemons); //Retorna a lista pré-carregada de 100 pokemons
   }
-
 }
